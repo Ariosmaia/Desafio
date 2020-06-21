@@ -1,8 +1,5 @@
 ﻿using EmployeeRegistration.Domain.Core.ValueObjects;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EmployeeRegistration.Domain.ValueObjects
 {

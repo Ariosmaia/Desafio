@@ -11,6 +11,16 @@ namespace EmployeeRegistration.Domain.Employees
     public class Employee : Entity<Employee>
     {
 
+        protected Employee() {}
+        public Employee(Name fullName, DateTime birthDate, string email, EGender gender)
+        {
+            Id = Guid.NewGuid();
+            FullName = fullName;
+            BirthDate = birthDate;
+            Email = email;
+            Gender = gender;
+        }
+
         public Name FullName { get; private set; }
         public DateTime BirthDate { get; private set; }
         public string Email { get; private set; }

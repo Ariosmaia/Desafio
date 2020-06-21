@@ -8,6 +8,12 @@ namespace EmployeeRegistration.Domain.Employees
 {
     public class Skill : Entity<Skill>
     {
+        protected Skill() {}
+        public Skill(string skillName)
+        {
+            Id = Guid.NewGuid();
+            SkillName = skillName;
+        }
 
         public string SkillName { get; private set; }
         public virtual ICollection<EmployeeSkill> EmployeeSkills { get; private set; }

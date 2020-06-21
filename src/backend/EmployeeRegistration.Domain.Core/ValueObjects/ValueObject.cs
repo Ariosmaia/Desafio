@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeRegistration.Domain.Core.ValueObjects
 {
@@ -7,6 +8,7 @@ namespace EmployeeRegistration.Domain.Core.ValueObjects
     {
         public abstract bool IsValid();
 
+        [NotMapped]
         public ValidationResult ValidationResult { get; protected set; }
 
         public ValueObject()
