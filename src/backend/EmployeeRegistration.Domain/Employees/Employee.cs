@@ -1,5 +1,6 @@
 ﻿using EmployeeRegistration.Domain.Core.Models;
 using EmployeeRegistration.Domain.Enums;
+using EmployeeRegistration.Domain.Utils;
 using EmployeeRegistration.Domain.ValueObjects;
 using FluentValidation;
 using System;
@@ -12,25 +13,28 @@ namespace EmployeeRegistration.Domain.Employees
     {
 
         protected Employee() {}
-        public Employee(Name fullName, DateTime birthDate, string email, EGender gender)
+        public Employee(Guid id, Name fullName, DateTime birthDate, string email, EGender gender, List<EmployeeSkill> employeeSkills)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             FullName = fullName;
             BirthDate = birthDate;
             Email = email;
             Gender = gender;
+            EmployeeSkills = employeeSkills;
         }
 
         public Name FullName { get; private set; }
         public DateTime BirthDate { get; private set; }
         public string Email { get; private set; }
         public EGender Gender { get; private set; }
-        public virtual ICollection<EmployeeSkill> EmployeeSkills { get; private set; }
+        public bool Deleted { get; private set; }
+        public virtual List<EmployeeSkill> EmployeeSkills { get; private set; }
 
 
         private static bool IsOverEighteen(DateTime birthDate)
         {
-            return birthDate <= DateTime.Now.AddDays(-18);
+            var age = AgeUtil.Age(birthDate) > 18;
+            return age;
         }
 
 

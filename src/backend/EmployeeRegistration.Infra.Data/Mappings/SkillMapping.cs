@@ -20,6 +20,15 @@ namespace EmployeeRegistration.Infra.Data.Mappings
 
             builder.Ignore(e => e.ValidationResult);
 
+            builder
+                .HasData(
+                    new Skill(Guid.NewGuid(), "C#"),
+                    new Skill(Guid.NewGuid(), "Java"),
+                    new Skill(Guid.NewGuid(), "Angular"),
+                    new Skill(Guid.NewGuid(), "SQL"),
+                    new Skill(Guid.NewGuid(), "ASP")
+                );
+
             builder.ToTable("Skills");
         }
     }

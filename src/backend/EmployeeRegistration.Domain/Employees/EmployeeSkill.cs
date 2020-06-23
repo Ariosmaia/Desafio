@@ -7,18 +7,13 @@ namespace EmployeeRegistration.Domain.Employees
 {
     public class EmployeeSkill
     {
-        protected EmployeeSkill() { }
-        public EmployeeSkill(Guid employeeId, Guid skillId)
-        {
-            EmployeeId = employeeId;
-            SkillId = skillId;
-        }
+        public EmployeeSkill() { }
+    
+        public Guid EmployeeId { get; set; }
+        public Guid SkillId { get; set; }
 
-        public Guid EmployeeId { get; private set; }
-        public Guid SkillId { get; private set; }
-
-        public virtual Employee Employee { get; private set; }
-        public virtual Skill Skill { get; private set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Skill Skill { get; set; }
 
     }
 }

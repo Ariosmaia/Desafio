@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EmployeeRegistration.Domain.Core.Notifications
 {
-    public class DomainNotificationHandler : IDomainNotificationHandler<DomainNotification>
+    public class DomainNotificationHandler : INotificationHandler<DomainNotification>
     {
         private List<DomainNotification> _notifications;
 
@@ -13,21 +16,24 @@ namespace EmployeeRegistration.Domain.Core.Notifications
             _notifications = new List<DomainNotification>();
         }
 
-        public List<DomainNotification> GetNotifications()
-        {
-            return _notifications;
-        }
-
-        public void Handle(DomainNotification message)
+        public Task Handle(DomainNotification message, CancellationToken cancellationToken)
         {
             _notifications.Add(message);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Erro: {message.Key} - {message.Value}");
+
+            return Task.CompletedTask;
         }
 
-        public bool HasNotifications()
+
+        public virtual List<DomainNotification> GetNotifications()
         {
-            return _notifications.Any();
+            return _notifications;
+        }
+
+        public virtual bool HasNotifications()
+        {
+            return GetNotifications().Any();
         }
 
         public void Dispose()

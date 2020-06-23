@@ -9,6 +9,9 @@ namespace EmployeeRegistration.Infra.Data.Context
 {
     public class EmployeeRegistrationContext : DbContext
     {
+
+        public EmployeeRegistrationContext(DbContextOptions<EmployeeRegistrationContext> options) : base(options) { }
+
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<EmployeeSkill> EmployeeSkills { get; set; }
@@ -20,17 +23,6 @@ namespace EmployeeRegistration.Infra.Data.Context
             modelBuilder.AddConfiguration(new EmployeeSkillMapping());
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-
         }
     }
 }

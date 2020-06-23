@@ -9,9 +9,9 @@ namespace EmployeeRegistration.Domain.Employees
     public class Skill : Entity<Skill>
     {
         protected Skill() {}
-        public Skill(string skillName)
+        public Skill(Guid id, string skillName)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             SkillName = skillName;
         }
 
