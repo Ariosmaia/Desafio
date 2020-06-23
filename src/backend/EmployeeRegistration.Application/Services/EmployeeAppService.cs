@@ -26,10 +26,14 @@ namespace EmployeeRegistration.Application.Services
             _bus = bus;
         }
 
-        public IEnumerable<EmployeeViewModel> GetAll(FilterViewModel filter = null)
+        public PagedViewModel GetAll(FilterViewModel filter = null, OrderByViewModel order = null, PaginationViewModel pagination = null)
         {
-            var employees = _employeeRepository.GetAllCustom(_mapper.Map<FilterDto>(filter));
-            return _mapper.Map<IEnumerable<EmployeeViewModel>>(employees);
+            var employees = _employeeRepository.GetAllCustom(
+                _mapper.Map<FilterDto>(filter), 
+                _mapper.Map<OrderByDto>(order),
+                _mapper.Map<PaginationDto>(pagination)
+                );
+            return _mapper.Map<PagedViewModel>(employees);
         }
 
         public EmployeeViewModel GetById(Guid id)

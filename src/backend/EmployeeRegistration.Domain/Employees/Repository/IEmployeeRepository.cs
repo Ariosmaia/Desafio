@@ -8,9 +8,7 @@ namespace EmployeeRegistration.Domain.Employees.Repository
 {
     public interface IEmployeeRepository : IRepository<Employee>
     {
-        void UpdateCustom(EmployeeDto obj);
-
-        IEnumerable<Employee> GetAllCustom(FilterDto filter = null);
+        PagedDto GetAllCustom(FilterDto filter = null, OrderByDto order = null, PaginationDto pagination = null);
 
     }
 }

@@ -74,22 +74,9 @@ namespace EmployeeRegistration.Domain.Employees.Commands
 
             if (!EmployeeValid(employee)) return Task.FromResult(false);
 
-            var skillsSelected = new List<Guid>();
+            _employeeRepository.Update(employee);
 
-            foreach (var item in employee.EmployeeSkills)
-            {
-                skillsSelected.Add(item.SkillId);
-            }
-
-            var updateDto = new EmployeeDto
-            {
-                Employee = employee,
-                SkillsSelected = skillsSelected
-            };
-
-            _employeeRepository.UpdateCustom(updateDto);
-
-            
+            Commit();
 
             return Task.FromResult(true);
         }

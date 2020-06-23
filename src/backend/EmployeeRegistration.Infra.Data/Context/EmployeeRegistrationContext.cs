@@ -22,6 +22,8 @@ namespace EmployeeRegistration.Infra.Data.Context
             modelBuilder.AddConfiguration(new SkillMapping());
             modelBuilder.AddConfiguration(new EmployeeSkillMapping());
 
+            modelBuilder.Entity<Employee>().HasQueryFilter(p => !p.Deleted);
+
             base.OnModelCreating(modelBuilder);
         }
     }

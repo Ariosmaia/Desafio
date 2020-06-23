@@ -34,7 +34,6 @@ namespace EmployeeRegistration.Infra.Data.Mappings
             builder.Property(e => e.Email)
                 .HasColumnType("varchar(100)");
 
-            builder.HasQueryFilter(p => !p.Deleted);
 
             builder.Property(e => e.Gender)
                 .IsRequired();

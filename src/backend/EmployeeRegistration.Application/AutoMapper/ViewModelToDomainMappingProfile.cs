@@ -3,6 +3,7 @@ using EmployeeRegistration.Application.ViewModels;
 using EmployeeRegistration.Domain.Employees;
 using EmployeeRegistration.Domain.Employees.Commands;
 using EmployeeRegistration.Domain.Employees.Dtos;
+using EmployeeRegistration.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,13 @@ namespace EmployeeRegistration.Application.AutoMapper
 
             CreateMap<FilterViewModel, FilterDto>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+
+            CreateMap<OrderByViewModel, OrderByDto>()
+               .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<PaginationViewModel, PaginationDto>()
+               .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         }
 

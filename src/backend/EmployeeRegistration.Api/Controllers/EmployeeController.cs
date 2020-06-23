@@ -31,9 +31,12 @@ namespace EmployeeRegistration.Api.Controllers
         [HttpGet]
         [Route("employees")]
         [AllowAnonymous]
-        public ActionResult Get([FromQuery] FilterViewModel filter = null)
+        public ActionResult Get(
+            [FromQuery] FilterViewModel filter = null,
+            [FromQuery] OrderByViewModel order = null,
+            [FromQuery] PaginationViewModel pagination = null)
         {
-            return Ok(_employeeAppService.GetAll(filter));
+            return Ok(_employeeAppService.GetAll(filter, order, pagination));
         }
 
         [HttpGet]

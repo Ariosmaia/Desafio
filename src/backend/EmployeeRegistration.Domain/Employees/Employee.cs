@@ -12,7 +12,7 @@ namespace EmployeeRegistration.Domain.Employees
     public class Employee : Entity<Employee>
     {
 
-        protected Employee() {}
+        protected Employee() { }
         public Employee(Guid id, Name fullName, DateTime birthDate, string email, EGender gender, List<EmployeeSkill> employeeSkills)
         {
             Id = id;
@@ -23,12 +23,12 @@ namespace EmployeeRegistration.Domain.Employees
             EmployeeSkills = employeeSkills;
         }
 
-        public Name FullName { get; private set; }
-        public DateTime BirthDate { get; private set; }
-        public string Email { get; private set; }
-        public EGender Gender { get; private set; }
-        public bool Deleted { get; private set; }
-        public virtual List<EmployeeSkill> EmployeeSkills { get; private set; }
+        public Name FullName { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Email { get; set; }
+        public EGender Gender { get;  set; }
+        public bool Deleted { get; set; }
+        public virtual List<EmployeeSkill> EmployeeSkills { get; set; }
 
 
         private static bool IsOverEighteen(DateTime birthDate)

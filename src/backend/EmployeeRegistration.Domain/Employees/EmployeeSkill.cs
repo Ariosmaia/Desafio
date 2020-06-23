@@ -15,5 +15,18 @@ namespace EmployeeRegistration.Domain.Employees
         public virtual Employee Employee { get; set; }
         public virtual Skill Skill { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is EmployeeSkill)) return false;
+            var ps = obj as EmployeeSkill;
+            return (this.EmployeeId == ps.EmployeeId) && (this.SkillId == ps.SkillId);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.EmployeeId.GetHashCode() + this.SkillId.GetHashCode() + 765;
+        }
+
     }
 }

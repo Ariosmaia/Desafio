@@ -11,7 +11,7 @@ namespace EmployeeRegistration.Application.Interfaces
     {
         void Add(EmployeeViewModel employeeViewModel);
         EmployeeViewModel GetById(Guid id);
-        IEnumerable<EmployeeViewModel> GetAll(FilterViewModel filter = null);
+        PagedViewModel GetAll(FilterViewModel filter = null, OrderByViewModel order = null, PaginationViewModel pagination = null);
         void Update(EmployeeViewModel employeeViewModel);
         void Remove(Guid id);
         IEnumerable<EmployeeViewModel> Find(Expression<Func<EmployeeViewModel, bool>> predicate);

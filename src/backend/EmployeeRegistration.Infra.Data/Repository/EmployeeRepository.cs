@@ -27,12 +27,16 @@ namespace EmployeeRegistration.Infra.Data.Repository
             return employee;
         }
 
-        public IEnumerable<Employee> GetAllCustom(FilterDto filter = null)
+        public PagedDto GetAllCustom(FilterDto filter = null, OrderByDto order = null, PaginationDto pagination = null)
         {
-            var employee = Db.Employees.AsNoTracking().Include(e =>
-                    e.EmployeeSkills).ThenInclude(e => e.Skill);
+            var employeePagination = Db.Employees.AsNoTracking()
+                .AplyFilter(filter)
+                .AplyOrder(order)
+                .Include(e =>
+                    e.EmployeeSkills).ThenInclude(e => e.Skill)
+                .ToPaged(pagination);
 
-            return employee;
+            return employeePagination;
         }
 
         public override Employee GetById(Guid id)
@@ -43,20 +47,39 @@ namespace EmployeeRegistration.Infra.Data.Repository
             return employee;
         }
 
-
-        public void UpdateCustom(EmployeeDto obj)
+        public override void Update(Employee obj)
         {
-            var employee = Db.Employees.AsNoTracking().Include(e =>
-                     e.EmployeeSkills).FirstOrDefault(x => x.Id == obj.Employee.Id);
+            var oldEmployee = Db.Employees.AsNoTracking().Include(p => p.EmployeeSkills).ThenInclude(e => e.Skill).First(p => p.Id == obj.Id);
+
+            oldEmployee.FullName = obj.FullName;
+            oldEmployee.BirthDate = obj.BirthDate;
+            oldEmployee.Gender = obj.Gender;
+            oldEmployee.Email = obj.Email;
+
+
+            var skillsSelected = new List<Guid>();
+
+            foreach (var item in obj.EmployeeSkills)
+            {
+                skillsSelected.Add(item.SkillId);
+            }
 
 
 
-            Db.TryUpdateManyToMany(employee.EmployeeSkills, obj.SkillsSelected
+            var employeeDb = Db.Employees.AsNoTracking().Include(e =>
+                     e.EmployeeSkills).First(x => x.Id == obj.Id);
+
+
+
+            Db.TryUpdateManyToMany(oldEmployee.EmployeeSkills, skillsSelected
                 .Select(x => new EmployeeSkill
                 {
                     SkillId = x,
-                    EmployeeId = obj.Employee.Id
+                    EmployeeId = obj.Id
                 }), x => x.SkillId);
+
+            base.Update(oldEmployee);
         }
+
     }
 }
