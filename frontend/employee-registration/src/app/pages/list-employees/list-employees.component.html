@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <div class="options">
+    <div>
+      <button [routerLink]="['/register-employee']">Cadastrar</button>
+    </div>
+    <div class="filterFields">
+      <form novalidate (ngSubmit)="handleFilter()" [formGroup]="searchForm">
+        <select formControlName="filter"  name="" id="">
+          <option value="">Selecione o filtro</option>
+          <option value="age">Idade</option>
+          <option value="gender">Sexo</option>
+          <option value="name">Nome</option>
+        </select>
+        <input formControlName="search" type="text" placeholder="Filtrar...">
+        <button>Filtrar</button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="employees.length == 0" class="noData">
+    <p>Sem dados</p>
+  </div>
+  <table *ngIf="employees.length > 0" class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Nome Completo</th>
+        <th scope="col">Idade</th>
+        <th scope="col">Email</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Habilidades</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let employee of employees | paginate: { itemsPerPage: pagination.sizePage, currentPage: pagination.numberPage, totalItems: pagination.total }'>
+        <td><a [routerLink]="['/update-employee', employee.id]">Editar</a></td>
+        <td>{{ employee?.firstName }} {{ employee?.lastName }}</td>
+        <td>{{ employee.birthDate | age }} anos</td>
+        <td>{{ employee.email }}</td>
+        <td>
+          <p *ngIf="employee.gender == 'MALE'">Masculino</p>
+          <p *ngIf="employee.gender == 'FEMALE'">Femino</p>
+          <p *ngIf="employee.gender == 'OTHER'">Outro</p>
+        </td>
+        <td>
+          <p *ngFor='let skill of employee?.skills'>{{ skill?.skillName }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="employees.length > 0" class="pages">
+    <pagination-controls (click)="handleChangePage(pagination.numberPage)" (pageChange)="pagination.numberPage = $event"></pagination-controls>
+  </div>
+
+</div>
+

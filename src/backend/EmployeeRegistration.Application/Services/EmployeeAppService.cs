@@ -62,5 +62,10 @@ namespace EmployeeRegistration.Application.Services
         {
             _bus.SendCommand(new DeleteEmployeeCommand(id));
         }
+
+        public IEnumerable<SkillViewModel> GetAllSkills()
+        {
+            return _mapper.Map <IEnumerable<SkillViewModel>>(_employeeRepository.GetAllSkills());
+        }
     }
 }

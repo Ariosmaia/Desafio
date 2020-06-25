@@ -35,7 +35,7 @@ namespace EmployeeRegistration.Application.AutoMapper
                   Total = e.Total,
                   TotalPages = e.TotalPages,
                   SizePage = e.SizePage,
-                  NumerPage = e.NumerPage,
+                  NumberPage = e.NumberPage,
                   Result = e.Result
                     .ConvertAll(
                         x => new EmployeeViewModel

@@ -39,6 +39,15 @@ namespace EmployeeRegistration.Api.Controllers
             return Ok(_employeeAppService.GetAll(filter, order, pagination));
         }
 
+
+        [HttpGet]
+        [Route("skills")]
+        [AllowAnonymous]
+        public ActionResult GetSkills()
+        {
+            return Ok(_employeeAppService.GetAllSkills());
+        }
+
         [HttpGet]
         [AllowAnonymous]
         [Route("employees/{id:guid}")]

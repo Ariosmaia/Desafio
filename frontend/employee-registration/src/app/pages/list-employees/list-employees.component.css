@@ -1,0 +1,85 @@
+
+.options{
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.filterFields input {
+  width: 400px;
+}
+
+.filterFields input, select, option {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 2px solid white;
+  background: rgba(1, 1, 1, 0.01);
+  color: white;
+  margin-left: 10px;
+  transition: border 0.1s;
+}
+
+.filterFields input:focus, select:focus {
+  border: 2px solid darkslateblue;
+}
+
+.filterFields select option {
+  background: #666;
+}
+
+.noData {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noData p {
+  font-size: 24px;
+}
+
+
+thead tr th {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+}
+
+tr td a{
+  text-decoration: none;
+  color: green;
+  transition: color 0.1s;
+}
+
+tr td a:hover{
+  color: darkslateblue
+}
+
+tr td {
+  padding: 15px 0 !important;
+  text-align: center;
+
+}
+
+tr td:last-child{
+  padding: 15px 0 !important;
+  display: flex;
+  justify-content: center;
+}
+
+tr td p{
+ margin-right: 8px;
+}
+
+.pages {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+
+

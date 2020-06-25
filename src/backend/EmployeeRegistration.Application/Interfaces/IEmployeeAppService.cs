@@ -15,5 +15,7 @@ namespace EmployeeRegistration.Application.Interfaces
         void Update(EmployeeViewModel employeeViewModel);
         void Remove(Guid id);
         IEnumerable<EmployeeViewModel> Find(Expression<Func<EmployeeViewModel, bool>> predicate);
+
+        IEnumerable<SkillViewModel> GetAllSkills();
     }
 }

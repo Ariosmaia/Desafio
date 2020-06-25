@@ -18,7 +18,7 @@ namespace EmployeeRegistration.Infra.Data.Extensions
             {
                 Total = query.Count(),
                 TotalPages = totalPages,
-                NumerPage = pagination.Page,
+                NumberPage = pagination.Page,
                 SizePage = pagination.Size,
                 Result = query
                     .Skip(pagination.Size * (pagination.Page - 1))

@@ -10,5 +10,7 @@ namespace EmployeeRegistration.Domain.Employees.Repository
     {
         PagedDto GetAllCustom(FilterDto filter = null, OrderByDto order = null, PaginationDto pagination = null);
 
+        IEnumerable<Skill> GetAllSkills();
+
     }
 }

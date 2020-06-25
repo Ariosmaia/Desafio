@@ -39,6 +39,11 @@ namespace EmployeeRegistration.Infra.Data.Repository
             return employeePagination;
         }
 
+        public IEnumerable<Skill> GetAllSkills()
+        {
+            return Db.Skills.ToList();
+        }
+
         public override Employee GetById(Guid id)
         {
             var employee = Db.Employees.AsNoTracking().Include(e =>
